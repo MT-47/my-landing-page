@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "9c75e400-cdc0-427a-a059-8231a65319fe"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -26,6 +27,9 @@
             ],
             "styles": [
               "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -54,6 +58,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "open": true
+          },
           "configurations": {
             "production": {
               "buildTarget": "my-landing-page:build:production"
