@@ -5,7 +5,9 @@ import { Istudent } from '../_models/istudent';
   providedIn: 'root',
 })
 export class StudentService {
-  private students: Istudent[] = [
+  private storageKey = 'students';
+
+  private defaultStudents: Istudent[] = [
     { id: 1, name: 'aly', age: 30 },
     { id: 2, name: 'ramy', age: 25 },
     { id: 3, name: 'sameh', age: 15 },
@@ -13,26 +15,44 @@ export class StudentService {
     { id: 5, name: 'alyaa', age: 18 },
   ];
 
+  private load(): Istudent[] {
+    const data = localStorage.getItem(this.storageKey);
+    if (data) {
+      return JSON.parse(data);
+    }
+    this.save(this.defaultStudents);
+    return this.defaultStudents;
+  }
+
+  private save(students: Istudent[]): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(students));
+  }
+
   getAll(): Istudent[] {
-    return this.students;
+    return this.load();
   }
 
   getById(id: number): Istudent | undefined {
-    return this.students.find((s) => s.id === id);
+    return this.load().find((s) => s.id === id);
   }
 
   add(student: Istudent): void {
-    this.students.push(student);
+    const students = this.load();
+    students.push(student);
+    this.save(students);
   }
 
   update(updated: Istudent): void {
-    const index = this.students.findIndex((s) => s.id === updated.id);
+    const students = this.load();
+    const index = students.findIndex((s) => s.id === updated.id);
     if (index !== -1) {
-      this.students[index] = updated;
+      students[index] = updated;
+      this.save(students);
     }
   }
 
   delete(id: number): void {
-    this.students = this.students.filter((s) => s.id !== id);
+    const students = this.load().filter((s) => s.id !== id);
+    this.save(students);
   }
 }

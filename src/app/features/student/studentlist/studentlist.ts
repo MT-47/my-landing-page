@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { Istudent } from '../../../_models/istudent';
@@ -10,7 +10,11 @@ import { StudentService } from '../../../_services/student';
   templateUrl: './studentlist.html',
   styleUrl: './studentlist.css',
 })
-export class Studentlist {
+export class Studentlist implements OnInit {
   private studentService = inject(StudentService);
-  students: Istudent[] = this.studentService.getAll();
+  students: Istudent[] = [];
+
+  ngOnInit() {
+    this.students = this.studentService.getAll();
+  }
 }
