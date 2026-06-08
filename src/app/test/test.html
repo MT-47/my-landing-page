@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <h1 class="fw-bold">Tests</h1>
+    <p class="text-muted">Manage your tests here.</p>
+
+    <!-- <input [value]="age" #stdage (keyup)="age=+stdage.value" type="text" class="form-control mb-3" placeholder="Enter age" />{{age}} -->
+
+    <!-- <input [(ngModel)]="age" type="number" class="form-control mb-3" placeholder="Enter age" />{{age}} -->
+
+    <div class="card flex justify-center">
+        <p-rating [(ngModel)]="value" [stars]="10" />
+    </div>
+    {{value}}
+
+    <div class="card flex justify-center">
+        <p-datepicker [(ngModel)]="date" dateFormat="dd.mm.yy" />
+    </div>
+    {{date | date}}
+
+</div>
