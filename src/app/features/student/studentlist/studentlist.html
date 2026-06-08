@@ -10,6 +10,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
+        
         <tbody>
             @for (student of students; track student.id; let i = $index) {
             <tr [ngClass]="i % 2 === 0 ? 'table-light' : 'table-secondary'">

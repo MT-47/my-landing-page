@@ -3,35 +3,17 @@
 
   <div class="mb-3">
     <label for="studentId" class="form-label">ID</label>
-    <input
-      id="studentId"
-      name="studentId"
-      [(ngModel)]="std.id"
-      type="number"
-      class="form-control"
-    />
+    <input id="studentId" name="studentId" [(ngModel)]="std.id" type="number" class="form-control" />
   </div>
 
   <div class="mb-3">
     <label for="studentName" class="form-label">Name</label>
-    <input
-      id="studentName"
-      name="studentName"
-      [(ngModel)]="std.name"
-      type="text"
-      class="form-control"
-    />
+    <input id="studentName" name="studentName" [(ngModel)]="std.name" type="text" class="form-control" />
   </div>
 
   <div class="mb-3">
     <label for="studentAge" class="form-label">Age</label>
-    <input
-      id="studentAge"
-      name="studentAge"
-      [(ngModel)]="std.age"
-      type="number"
-      class="form-control"
-    />
+    <input id="studentAge" name="studentAge" [(ngModel)]="std.age" type="number" class="form-control" />
   </div>
 
   <button (click)="add()" class="btn btn-success me-2">Save</button>

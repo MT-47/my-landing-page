@@ -1,4 +1,5 @@
-export interface Idepartment {
-  id:number;
-  name:string;
+export interface IDepartment {
+  id: number;
+  name: string;
+  location: string;
 }

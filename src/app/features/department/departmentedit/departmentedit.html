@@ -1,1 +1,26 @@
-<p>departmentedit works!</p>
+<div class="container mt-5">
+    <h2 class="fw-bold mb-4">Edit Department</h2>
+
+    <div class="mb-3">
+        <label for="deptId" class="form-label">ID</label>
+        <input id="deptId" name="deptId" [(ngModel)]="dept.id" type="number" class="form-control" disabled />
+    </div>
+
+    <div class="mb-3">
+        <label for="deptName" class="form-label">Name</label>
+        <input id="deptName" name="deptName" [(ngModel)]="dept.name" type="text" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="deptLocation" class="form-label">Location</label>
+        <input id="deptLocation" name="deptLocation" [(ngModel)]="dept.location" type="text" class="form-control" />
+    </div>
+
+    <button (click)="save()" class="btn btn-warning me-2">
+        Update
+    </button>
+
+    <a routerLink="/departments" class="btn btn-secondary">
+        Cancel
+    </a>
+</div>
