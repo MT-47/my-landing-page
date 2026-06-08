@@ -10,6 +10,8 @@ import { Departmentlist } from './features/department/departmentlist/departmentl
 import { Departmentadd } from './features/department/departmentadd/departmentadd';
 import { Departmentedit } from './features/department/departmentedit/departmentedit';
 import { Departmentdelete } from './features/department/departmentdelete/departmentdelete';
+import { Studentdetails } from './features/student/studentdetails/studentdetails';
+import { Departmentdetails } from './features/department/departmentdetails/departmentdetails';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -21,9 +23,12 @@ export const routes: Routes = [
   { path: 'students/add', component: Studentadd },
   { path: 'students/edit/:id', component: Studentedit },
   { path: 'students/delete/:id', component: Studentdelete },
+  {path: 'students/details/:id',component: Studentdetails,},
 
   { path: 'departments', component: Departmentlist },
   { path: 'departments/add', component: Departmentadd },
   { path: 'departments/edit/:id', component: Departmentedit },
   { path: 'departments/delete/:id', component: Departmentdelete },
+  {path: 'departments/details/:id', component: Departmentdetails,},
+  
 ];

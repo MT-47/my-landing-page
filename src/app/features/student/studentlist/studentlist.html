@@ -10,7 +10,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        
+
         <tbody>
             @for (student of students; track student.id; let i = $index) {
             <tr [ngClass]="i % 2 === 0 ? 'table-light' : 'table-secondary'">
@@ -20,6 +20,9 @@
                 <td>
                     <a routerLink="/students/edit/{{ student.id }}" class="btn btn-sm btn-warning me-2">Edit</a>
                     <a routerLink="/students/delete/{{ student.id }}" class="btn btn-sm btn-danger">Delete</a>
+                    <a routerLink="/students/details/{{ student.id }}" class="btn btn-sm btn-info me-2">
+                        Details
+                    </a>
                 </td>
             </tr>
             }

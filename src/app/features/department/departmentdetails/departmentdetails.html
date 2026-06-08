@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h2 class="fw-bold mb-4">Department Details</h2>
+
+  @if (dept) {
+
+  <div class="card shadow">
+    <div class="card-body">
+      <h4 class="card-title mb-3">
+        {{ dept.name }}
+      </h4>
+
+      <p>
+        <strong>ID:</strong>
+        {{ dept.id }}
+      </p>
+
+      <p>
+        <strong>Location:</strong>
+        {{ dept.location }}
+      </p>
+
+      <a
+        routerLink="/departments/edit/{{ dept.id }}"
+        class="btn btn-warning me-2"
+      >
+        Edit
+      </a>
+
+      <a
+        routerLink="/departments"
+        class="btn btn-secondary"
+      >
+        Back
+      </a>
+    </div>
+  </div>
+
+  } @else {
+
+  <div class="alert alert-danger">
+    Department not found.
+  </div>
+
+  <a
+    routerLink="/departments"
+    class="btn btn-secondary"
+  >
+    Back
+  </a>
+
+  }
+</div>

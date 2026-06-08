@@ -24,6 +24,9 @@
                     <a routerLink="/departments/delete/{{ department.id }}" class="btn btn-sm btn-danger">
                         Delete
                     </a>
+                    <a routerLink="/departments/details/{{ department.id }}" class="btn btn-sm btn-info me-2">
+                        Details
+                    </a>
                 </td>
             </tr>
             } @empty {
@@ -33,6 +36,6 @@
             }
         </tbody>
     </table>
-    
+
     <a routerLink="/departments/add" class="btn btn-primary">Add Department</a>
 </div>

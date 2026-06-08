@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h2 class="fw-bold mb-4">Student Details</h2>
+
+  @if (std) {
+
+  <div class="card shadow">
+    <div class="card-body">
+      <h4 class="card-title mb-3">{{ std.name }}</h4>
+
+      <p>
+        <strong>ID:</strong>
+        {{ std.id }}
+      </p>
+
+      <p>
+        <strong>Age:</strong>
+        {{ std.age }}
+      </p>
+
+      <a
+        routerLink="/students/edit/{{ std.id }}"
+        class="btn btn-warning me-2"
+      >
+        Edit
+      </a>
+
+      <a
+        routerLink="/students"
+        class="btn btn-secondary"
+      >
+        Back
+      </a>
+    </div>
+  </div>
+
+  } @else {
+
+  <div class="alert alert-danger">
+    Student not found.
+  </div>
+
+  <a routerLink="/students" class="btn btn-secondary">
+    Back
+  </a>
+
+  }
+</div>
