@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { Istudent } from '../../../_models/istudent';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { Istudent } from '../../../_models/istudent';
+import { StudentService } from '../../../_services/student';
 
 @Component({
   selector: 'app-studentlist',
@@ -10,31 +11,6 @@ import { NgClass } from '@angular/common';
   styleUrl: './studentlist.css',
 })
 export class Studentlist {
-  students: Istudent[] = [
-    {
-      id: 1,
-      name: 'aly',
-      age: 30,
-    },
-    {
-      id: 2,
-      name: 'ramy',
-      age: 25,
-    },
-    {
-      id: 3,
-      name: 'sameh',
-      age: 15,
-    },
-    {
-      id: 4,
-      name: 'sama',
-      age: 20,
-    },
-    {
-      id: 5,
-      name: 'alyaa',
-      age: 18,
-    },
-  ];
+  private studentService = inject(StudentService);
+  students: Istudent[] = this.studentService.getAll();
 }
