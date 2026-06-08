@@ -3,10 +3,13 @@ import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { Istudent } from '../../../_models/istudent';
 import { StudentService } from '../../../_services/student';
+import { TableModule } from 'primeng/table';
+
+
 
 @Component({
   selector: 'app-studentlist',
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink, TableModule],
   templateUrl: './studentlist.html',
   styleUrl: './studentlist.css',
 })

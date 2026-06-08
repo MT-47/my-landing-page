@@ -1,38 +1,38 @@
 <div class="container mt-5">
-    <h2 class="fw-bold mb-4">Student List</h2>
+    <h2 class="mb-4">Student List</h2>
 
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
+    <p-table [value]="students" [tableStyle]="{'min-width':'50rem'}" stripedRows>
+        <ng-template pTemplate="header">
             <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>Actions</th>
             </tr>
-        </thead>
+        </ng-template>
 
-        <tbody>
-            @for (student of students; track student.id; let i = $index) {
-            <tr [ngClass]="i % 2 === 0 ? 'table-light' : 'table-secondary'">
+        <ng-template pTemplate="body" let-student>
+            <tr>
                 <td>{{ student.id }}</td>
                 <td>{{ student.name }}</td>
                 <td>{{ student.age }}</td>
+
                 <td>
-                    <a routerLink="/students/edit/{{ student.id }}" class="btn btn-sm btn-warning me-2">Edit</a>
-                    <a routerLink="/students/delete/{{ student.id }}" class="btn btn-sm btn-danger">Delete</a>
-                    <a routerLink="/students/details/{{ student.id }}" class="btn btn-sm btn-info me-2">
+                    <a routerLink="/students/edit/{{student.id}}" class="btn btn-warning btn-sm me-2">
+                        Edit
+                    </a>
+                    <a routerLink="/students/delete/{{student.id}}" class="btn btn-danger btn-sm me-2">
+                        Delete
+                    </a>
+                    <a routerLink="/students/details/{{student.id}}" class="btn btn-info btn-sm me-2">
                         Details
                     </a>
                 </td>
             </tr>
-            }
-            @empty {
-            <tr>
-                <td colspan="4">No students found.</td>
-            </tr>
-            }
-        </tbody>
-    </table>
+        </ng-template>
+    </p-table>
 
-    <a routerLink="/students/add" class="btn btn-primary">Add Student</a>
+    <a routerLink="/students/add" class="btn btn-primary mt-3">
+        Add Student
+    </a>
 </div>
