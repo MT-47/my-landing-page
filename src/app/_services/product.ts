@@ -11,7 +11,7 @@ export class ProductService {
       name: 'Laptop',
       price: 1200,
       quantity: 10,
-      imgUrl: 'https://picsum.photos/200?random=1',
+      imgUrl: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80',
       catId: 1,
     },
     {
@@ -19,7 +19,7 @@ export class ProductService {
       name: 'Mouse',
       price: 25,
       quantity: 0,
-      imgUrl: 'https://picsum.photos/200?random=2',
+      imgUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80',
       catId: 1,
     },
     {
@@ -27,7 +27,7 @@ export class ProductService {
       name: 'T-Shirt',
       price: 30,
       quantity: 1,
-      imgUrl: 'https://picsum.photos/200?random=3',
+      imgUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80',
       catId: 2,
     },
     {
@@ -35,7 +35,7 @@ export class ProductService {
       name: 'Jeans',
       price: 70,
       quantity: 25,
-      imgUrl: 'https://picsum.photos/200?random=4',
+      imgUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&q=80',
       catId: 2,
     },
     {
@@ -43,7 +43,7 @@ export class ProductService {
       name: 'Coffee Mug',
       price: 12,
       quantity: 0,
-      imgUrl: 'https://picsum.photos/200?random=5',
+      imgUrl: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80',
       catId: 3,
     },
     {
@@ -51,7 +51,7 @@ export class ProductService {
       name: 'Notebook',
       price: 8,
       quantity: 100,
-      imgUrl: 'https://picsum.photos/200?random=6',
+      imgUrl: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&q=80',
       catId: 3,
     },
   ];

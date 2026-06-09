@@ -4,10 +4,11 @@ import { IProduct } from '../../../_models/iproduct';
 import { ICategory } from '../../../_models/icategory';
 import { ProductService } from '../../../_services/product';
 import { CategoryService } from '../../../_services/category';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-productlist',
-  imports: [FormsModule],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './productlist.html',
   styleUrl: './productlist.css',
 })
