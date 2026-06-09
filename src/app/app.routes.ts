@@ -12,6 +12,7 @@ import { Departmentedit } from './features/department/departmentedit/departmente
 import { Departmentdelete } from './features/department/departmentdelete/departmentdelete';
 import { Studentdetails } from './features/student/studentdetails/studentdetails';
 import { Departmentdetails } from './features/department/departmentdetails/departmentdetails';
+import { Productlist } from './features/product/productlist/productlist';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -31,4 +32,6 @@ export const routes: Routes = [
   { path: 'departments/delete/:id', component: Departmentdelete },
   {path: 'departments/details/:id', component: Departmentdetails,},
   
+  { path: 'products', component: Productlist },
+
 ];
