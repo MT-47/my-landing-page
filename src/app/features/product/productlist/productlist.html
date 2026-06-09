@@ -1,0 +1,64 @@
+<h3 class="my-5 text-center">Total order price is : {{ totalOrderPice }}</h3>
+<h4>selectedCatId : {{ selectedCatId }}</h4>
+<div class="mb-3 text-center">
+  <label for="Categories" class="form-label">Categories</label>
+  <select class="form-select form-select-lg w-50 m-auto" name="" id="Categories" [(ngModel)]="selectedCatId">
+    <option disabled selected value="0">Please Select category</option>
+    @for (cat of categories; track cat.id) {
+    <option [value]="cat.id">{{ cat.name }}</option>
+    }
+  </select>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 m-5">
+  @for (prd of products; track prd.id; let i=$index,c=$count,l=$last,f=$first) {
+  <!-- <div class="col" [class.d-none]="prd.catId != selectedCatId"> -->
+  @if (prd.catId == selectedCatId) {
+  <!-- <div class="col" *ngIf="prd.catId==selectedCatId"> -->
+  <div class="col">
+    <!-- <div class="card" [ngClass]="{'bg-warning':prd.quantity==0}"> -->
+    <!-- <div class="card" [ngStyle]="{ 'background-color':(prd.quantity==0)?'yellow':'#ffffff' }"> -->
+    <!-- <div class="card" [style]="{ 'background-color':(prd.quantity==0)?'yellow':'#ffffff' }"> -->
+    <div class="card" [style.background-color]="(prd.quantity==0)?'yellow':'#ffffff'">
+
+      <!-- <img src="{{prd.imgUrl}}" class="card-img-top" alt="..." /> -->
+      <!-- property binding -->
+      <img [src]="prd.imgUrl" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title" [class]="classes">{{ l }}-{{ prd.name }}</h5>
+        <p class="card-text">Price is : {{ prd.price }}</p>
+        <!-- @if(prd.quantity==0){
+            <p class="card-text">Quantity is : Out of stock</p>
+          }@else {
+          <p class="card-text">Quantity is : {{ prd.quantity }}</p>
+          } -->
+        @switch (prd.quantity) {
+        @case (0) {
+        <p class="card-text">Quantity is : Out of stock</p>
+        }
+        @case (1) {
+        <p class="card-text">Quantity is : Last item</p>
+        }
+        @default {
+        <p class="card-text">Quantity is : {{ prd.quantity }}</p>
+        }
+        }
+
+
+        <!-- template variable , refrence -->
+        <label for="quantityInp">Quantity:</label>
+        <input type="number" id="quantityInp" #quantityInp placeholder="Enter quantity" />
+        <button (click)="buy(prd.price, quantityInp.value)" [disabled]="prd.quantity == 0">
+          Buy
+        </button>
+        <!-- <button (click)="buy($event)" [disabled]="prd.quantity == 0">
+            Buy
+          </button> -->
+      </div>
+    </div>
+  </div>
+  }
+  } @empty {
+  <h1>No products to view</h1>
+  }
+</div>
