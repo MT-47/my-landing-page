@@ -13,10 +13,14 @@ import { Departmentdelete } from './features/department/departmentdelete/departm
 import { Studentdetails } from './features/student/studentdetails/studentdetails';
 import { Departmentdetails } from './features/department/departmentdetails/departmentdetails';
 import { Productlist } from './features/product/productlist/productlist';
+import { Contactus } from './features/contactus/contactus';
+import { About } from './features/about/about';
+import { Notfound } from './notfound/notfound';
 
 export const routes: Routes = [
-  { path: '', component: Home },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: Home },
+
   { path: 'test', component: Test },
   { path: 'privacy', component: Privacy },
 
@@ -24,14 +28,18 @@ export const routes: Routes = [
   { path: 'students/add', component: Studentadd },
   { path: 'students/edit/:id', component: Studentedit },
   { path: 'students/delete/:id', component: Studentdelete },
-  {path: 'students/details/:id',component: Studentdetails,},
+  { path: 'students/details/:id', component: Studentdetails },
 
   { path: 'departments', component: Departmentlist },
   { path: 'departments/add', component: Departmentadd },
   { path: 'departments/edit/:id', component: Departmentedit },
   { path: 'departments/delete/:id', component: Departmentdelete },
-  {path: 'departments/details/:id', component: Departmentdetails,},
-  
+  { path: 'departments/details/:id', component: Departmentdetails },
+
   { path: 'products', component: Productlist },
 
+  { path: 'about', component: About },
+  { path: 'contact', component: Contactus },
+
+  { path: '**', component: Notfound },
 ];
