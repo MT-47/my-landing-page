@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Istudent } from '../../../_models/istudent';
 import { StudentService } from '../../../_services/student';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-studentdetails',
@@ -15,8 +16,14 @@ export class Studentdetails implements OnInit {
 
   std: Istudent | undefined;
 
+  sub : Subscription | null = null;
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.std = this.studentService.getById(id);
+    this.sub = this.route.params.subscribe((params) => {
+      const id = Number(params['id']);
+      this.std = this.studentService.getById(id);
+    });
+  }
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 }
