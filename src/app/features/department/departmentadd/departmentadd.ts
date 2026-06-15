@@ -14,11 +14,7 @@ export class Departmentadd {
   private departmentService = inject(DepartmentService);
   private router = inject(Router);
 
-  dept: IDepartment = {
-    id: 0,
-    name: '',
-    location: '',
-  };
+  dept: IDepartment = { id: 0, name: '', location: '' };
 
   add() {
     this.departmentService.add(this.dept);

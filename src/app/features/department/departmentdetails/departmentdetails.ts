@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IDepartment } from '../../../_models/idepartment';
 import { DepartmentService } from '../../../_services/department';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-departmentdetails',
@@ -9,14 +10,21 @@ import { DepartmentService } from '../../../_services/department';
   templateUrl: './departmentdetails.html',
   styleUrl: './departmentdetails.css',
 })
-export class Departmentdetails implements OnInit {
+export class Departmentdetails implements OnInit, OnDestroy {
   private departmentService = inject(DepartmentService);
   private route = inject(ActivatedRoute);
 
   dept: IDepartment | undefined;
+  private sub!: Subscription;
 
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.dept = this.departmentService.getById(id);
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      const id = Number(params['id']);
+      this.dept = this.departmentService.getById(id);
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

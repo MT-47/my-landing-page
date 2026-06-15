@@ -1,10 +1,10 @@
-import { Component, inject, OnInit} from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { Istudent } from '../../../_models/istudent';
 import { StudentService } from '../../../_services/student';
-
-
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-studentlist',
@@ -12,11 +12,23 @@ import { StudentService } from '../../../_services/student';
   templateUrl: './studentlist.html',
   styleUrl: './studentlist.css',
 })
-export class Studentlist implements OnInit {
+export class Studentlist implements OnInit, OnDestroy {
   private studentService = inject(StudentService);
+  private router = inject(Router);
+  private sub!: Subscription;
+
   students: Istudent[] = [];
 
   ngOnInit() {
     this.students = this.studentService.getAll();
+    this.sub = this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => {
+        this.students = this.studentService.getAll();
+      });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

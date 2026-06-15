@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IDepartment } from '../../../_models/idepartment';
 import { DepartmentService } from '../../../_services/department';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-departmentdelete',
@@ -9,16 +10,19 @@ import { DepartmentService } from '../../../_services/department';
   templateUrl: './departmentdelete.html',
   styleUrl: './departmentdelete.css',
 })
-export class Departmentdelete {
+export class Departmentdelete implements OnInit, OnDestroy {
   private departmentService = inject(DepartmentService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   dept: IDepartment | undefined;
+  private sub!: Subscription;
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.dept = this.departmentService.getById(id);
+    this.sub = this.route.params.subscribe(params => {
+      const id = Number(params['id']);
+      this.dept = this.departmentService.getById(id);
+    });
   }
 
   confirmDelete() {
@@ -26,5 +30,9 @@ export class Departmentdelete {
       this.departmentService.delete(this.dept.id);
       this.router.navigate(['/departments']);
     }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
