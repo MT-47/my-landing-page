@@ -1,9 +1,21 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [FormsModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
-export class Register {}
+export class Register {
+  username = '';
+  password = '';
+  success = false;
+
+  register() {
+    if (this.username && this.password) {
+      this.success = true;
+    }
+  }
+}

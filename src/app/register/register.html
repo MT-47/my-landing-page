@@ -1,1 +1,24 @@
-<p>register works!</p>
+<div class="container mt-5 register-container">
+  <h2 class="fw-bold mb-4">Register</h2>
+
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input [(ngModel)]="username" type="text" class="form-control" placeholder="Choose a username" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input [(ngModel)]="password" type="password" class="form-control" placeholder="Choose a password" />
+  </div>
+
+  @if (success) {
+  <div class="alert alert-success">Registered successfully! <a routerLink="/login">Login now</a></div>
+  }
+
+  <button (click)="register()" class="btn btn-success w-100">Register</button>
+
+  <p class="text-center mt-3">
+    Already have an account?
+    <a routerLink="/login">Login</a>
+  </p>
+</div>
