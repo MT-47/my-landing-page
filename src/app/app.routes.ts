@@ -24,17 +24,27 @@ export const routes: Routes = [
   { path: 'test', component: Test },
   { path: 'privacy', component: Privacy },
 
-  { path: 'students', component: Studentlist },
-  { path: 'students/add', component: Studentadd },
-  { path: 'students/edit/:id', component: Studentedit },
-  { path: 'students/delete/:id', component: Studentdelete },
-  { path: 'students/details/:id', component: Studentdetails },
+  {
+    path: 'students',
+    component: Studentlist,
+    children: [
+      { path: 'add', component: Studentadd },
+      { path: 'edit/:id', component: Studentedit },
+      { path: 'delete/:id', component: Studentdelete },
+      { path: 'details/:id', component: Studentdetails },
+    ],
+  },
 
-  { path: 'departments', component: Departmentlist },
-  { path: 'departments/add', component: Departmentadd },
-  { path: 'departments/edit/:id', component: Departmentedit },
-  { path: 'departments/delete/:id', component: Departmentdelete },
-  { path: 'departments/details/:id', component: Departmentdetails },
+  {
+    path: 'departments',
+    component: Departmentlist,
+    children: [
+      { path: 'add', component: Departmentadd },
+      { path: 'edit/:id', component: Departmentedit },
+      { path: 'delete/:id', component: Departmentdelete },
+      { path: 'details/:id', component: Departmentdetails },
+    ],
+  },
 
   { path: 'products', component: Productlist },
 
