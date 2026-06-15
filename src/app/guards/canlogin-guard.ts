@@ -1,11 +1,13 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { AccountService } from '../_services/account';
 
-export const canloginGuard: CanActivateFn = (route, state) => {
-  let s = localStorage.getItem('isloggedin');
-  if (s != null)
-    return true;
-  let router = inject(Router);
+export const canloginGuard: CanActivateFn = () => {
+  const accountService = inject(AccountService);
+  const router = inject(Router);
+
+  if (accountService.isLoggedIn()) return true;
+
   router.navigate(['/login']);
   return false;
 };
