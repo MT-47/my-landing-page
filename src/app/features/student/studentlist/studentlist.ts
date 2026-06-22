@@ -22,16 +22,15 @@ export class Studentlist implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadStudents();
     this.sub = this.router.events
-      .pipe(filter(e => e instanceof NavigationEnd))
+      .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => this.loadStudents());
   }
 
   loadStudents() {
-    this.studentService.getAll().subscribe(res => {
+    this.studentService.getAll().subscribe((res: any) => {
       this.students = res.Data ?? res;
     });
   }
-
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
