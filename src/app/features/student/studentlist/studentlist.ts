@@ -20,12 +20,16 @@ export class Studentlist implements OnInit, OnDestroy {
 
   students: Istudent[] = [];
 
-  ngOnInit() {
-    this.loadStudents();
-    this.sub = this.router.events
-      .pipe(filter((e) => e instanceof NavigationEnd))
-      .subscribe(() => this.loadStudents());
-  }
+ngOnInit() {
+  this.loadStudents();
+  this.sub = this.router.events
+    .pipe(filter((e) => e instanceof NavigationEnd))
+    .subscribe((e: any) => {
+      if (e.url === '/students') {
+        this.loadStudents();
+      }
+    });
+}
 
   loadStudents() {
     this.studentService.getAll().subscribe(res => {
