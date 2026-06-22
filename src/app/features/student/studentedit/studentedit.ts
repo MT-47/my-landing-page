@@ -16,7 +16,7 @@ export class Studentedit implements OnInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  std: Istudent = { StId: 0, StFname: '', StLname: '', StAge: 0 };
+  std: Istudent = { stId: 0, stFname: '', stLname: '', stAge: 0 };
   private sub!: Subscription;
 
   ngOnInit() {

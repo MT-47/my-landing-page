@@ -4,11 +4,11 @@
   @if (std) {
   <div class="card shadow">
     <div class="card-body">
-      <h4 class="card-title mb-3">{{ std.StFname }} {{ std.StLname }}</h4>
-      <p><strong>ID:</strong> {{ std.StId }}</p>
-      <p><strong>Age:</strong> {{ std.StAge }}</p>
-      <p><strong>Department:</strong> {{ std.deptName ?? 'N/A' }}</p>
-      <a routerLink="/students/edit/{{ std.StId }}" class="btn btn-warning me-2">Edit</a>
+      <h4 class="card-title mb-3">{{ std.stFname }} {{ std.stLname }}</h4>
+      <p><strong>ID:</strong> {{ std.stId }}</p>
+      <p><strong>Age:</strong> {{ std.stAge }}</p>
+      <p><strong>Department:</strong> {{ std.departmentName ?? 'N/A' }}</p>
+      <a routerLink="/students/edit/{{ std.stId }}" class="btn btn-warning me-2">Edit</a>
       <a routerLink="/students" class="btn btn-secondary">Back</a>
     </div>
   </div>

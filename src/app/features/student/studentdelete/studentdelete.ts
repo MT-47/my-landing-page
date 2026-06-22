@@ -29,7 +29,7 @@ export class Studentdelete implements OnInit, OnDestroy {
 
   confirmDelete() {
     if (this.std) {
-      this.studentService.delete(this.std.StId).subscribe(() => {
+      this.studentService.delete(this.std.stId).subscribe(() => {
         this.router.navigate(['/students']);
       });
     }

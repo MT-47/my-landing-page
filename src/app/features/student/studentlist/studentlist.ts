@@ -26,11 +26,11 @@ export class Studentlist implements OnInit, OnDestroy {
       .subscribe(() => this.loadStudents());
   }
 
-  loadStudents() {
-    this.studentService.getAll().subscribe((res: any) => {
-      this.students = res.data ?? res;
-    });
-  }
+loadStudents() {
+  this.studentService.getAll().subscribe(res => {
+    this.students = res;
+  });
+}
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

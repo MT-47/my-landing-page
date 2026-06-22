@@ -14,7 +14,7 @@ export class Studentadd {
   private studentService = inject(StudentService);
   private router = inject(Router);
 
-  std: Istudent = { StId: 0, StFname: '', StLname: '', StAge: 0 };
+  std: Istudent = { stId: 0, stFname: '', stLname: '', stAge: 0 };
 
   add() {
     this.studentService.add(this.std).subscribe(() => {

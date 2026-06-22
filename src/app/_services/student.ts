@@ -9,9 +9,9 @@ export class StudentService {
   private http = inject(HttpClient);
   private url = `${environment.apiUrl}/Students`;
 
-  getAll(): Observable<any> {
-    return this.http.get(this.url);
-  }
+getAll(): Observable<Istudent[]> {
+  return this.http.get<Istudent[]>(this.url);
+}
 
   getById(id: number): Observable<Istudent> {
     return this.http.get<Istudent>(`${this.url}/${id}`);
@@ -21,7 +21,7 @@ export class StudentService {
     return this.http.post(this.url, student);
   }
 
-  update(student: Istudent): Observable<any> {
+  update(student: Istudent) {
     return this.http.put(`${this.url}/${student.stId}`, student);
   }
 
