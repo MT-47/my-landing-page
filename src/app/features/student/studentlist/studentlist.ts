@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { Istudent } from '../../../_models/istudent';
@@ -15,6 +15,7 @@ import { filter } from 'rxjs/operators';
 export class Studentlist implements OnInit, OnDestroy {
   private studentService = inject(StudentService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);  // ← ضيف دي
   private sub!: Subscription;
 
   students: Istudent[] = [];
@@ -26,11 +27,13 @@ export class Studentlist implements OnInit, OnDestroy {
       .subscribe(() => this.loadStudents());
   }
 
-loadStudents() {
-  this.studentService.getAll().subscribe(res => {
-    this.students = res;
-  });
-}
+  loadStudents() {
+    this.studentService.getAll().subscribe(res => {
+      this.students = [...res];      // ← spread operator مهم
+      this.cdr.detectChanges();      // ← force re-render
+    });
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
