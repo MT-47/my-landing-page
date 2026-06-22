@@ -16,20 +16,22 @@ export class Studentedit implements OnInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  std: Istudent = { id: 0, name: '', age: 0 };
+  std: Istudent = { StId: 0, StFname: '', StLname: '', StAge: 0 };
   private sub!: Subscription;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = Number(params['id']);
-      const found = this.studentService.getById(id);
-      if (found) this.std = { ...found };
+      this.studentService.getById(id).subscribe(data => {
+        this.std = { ...data };
+      });
     });
   }
 
   save() {
-    this.studentService.update(this.std);
-    this.router.navigate(['/students']);
+    this.studentService.update(this.std).subscribe(() => {
+      this.router.navigate(['/students']);
+    });
   }
 
   ngOnDestroy() {

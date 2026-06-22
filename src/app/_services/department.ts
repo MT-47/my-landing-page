@@ -1,59 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { IDepartment } from '../_models/idepartment';
+import { environment } from '../environments/environment';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class DepartmentService {
-  private storageKey = 'departments';
+  private http = inject(HttpClient);
+  private url = `${environment.apiUrl}/Departments`;
 
-  private defaultDepartments: IDepartment[] = [
-    { id: 1, name: 'Computer Science', location: 'Building A' },
-    { id: 2, name: 'Information Systems', location: 'Building B' },
-    { id: 3, name: 'Software Engineering', location: 'Building C' },
-  ];
-
-  private load(): IDepartment[] {
-    const data = localStorage.getItem(this.storageKey);
-
-    if (data) {
-      return JSON.parse(data);
-    }
-
-    this.save(this.defaultDepartments);
-    return this.defaultDepartments;
+  getAll(): Observable<IDepartment[]> {
+    return this.http.get<IDepartment[]>(this.url);
   }
 
-  private save(departments: IDepartment[]): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(departments));
+  getById(id: number): Observable<IDepartment> {
+    return this.http.get<IDepartment>(`${this.url}/${id}`);
   }
 
-  getAll(): IDepartment[] {
-    return this.load();
+  add(dept: IDepartment): Observable<any> {
+    return this.http.post(this.url, dept);
   }
 
-  getById(id: number): IDepartment | undefined {
-    return this.load().find((d) => d.id === id);
+  update(dept: IDepartment): Observable<any> {
+    return this.http.put(`${this.url}/${dept.DeptId}`, dept);
   }
 
-  add(department: IDepartment): void {
-    const departments = this.load();
-    departments.push(department);
-    this.save(departments);
-  }
-
-  update(updated: IDepartment): void {
-    const departments = this.load();
-    const index = departments.findIndex((d) => d.id === updated.id);
-
-    if (index !== -1) {
-      departments[index] = updated;
-      this.save(departments);
-    }
-  }
-
-  delete(id: number): void {
-    const departments = this.load().filter((d) => d.id !== id);
-    this.save(departments);
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

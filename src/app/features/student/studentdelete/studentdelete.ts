@@ -21,14 +21,17 @@ export class Studentdelete implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = Number(params['id']);
-      this.std = this.studentService.getById(id);
+      this.studentService.getById(id).subscribe(data => {
+        this.std = data;
+      });
     });
   }
 
   confirmDelete() {
     if (this.std) {
-      this.studentService.delete(this.std.id);
-      this.router.navigate(['/students']);
+      this.studentService.delete(this.std.StId).subscribe(() => {
+        this.router.navigate(['/students']);
+      });
     }
   }
 

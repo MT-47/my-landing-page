@@ -14,10 +14,11 @@ export class Departmentadd {
   private departmentService = inject(DepartmentService);
   private router = inject(Router);
 
-  dept: IDepartment = { id: 0, name: '', location: '' };
+  dept: IDepartment = { DeptId: 0, DeptName: '', DeptLocation: '' };
 
   add() {
-    this.departmentService.add(this.dept);
-    this.router.navigate(['/departments']);
+    this.departmentService.add(this.dept).subscribe(() => {
+      this.router.navigate(['/departments']);
+    });
   }
 }

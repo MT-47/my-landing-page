@@ -21,14 +21,17 @@ export class Departmentdelete implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = Number(params['id']);
-      this.dept = this.departmentService.getById(id);
+      this.departmentService.getById(id).subscribe(data => {
+        this.dept = data;
+      });
     });
   }
 
   confirmDelete() {
     if (this.dept) {
-      this.departmentService.delete(this.dept.id);
-      this.router.navigate(['/departments']);
+      this.departmentService.delete(this.dept.DeptId).subscribe(() => {
+        this.router.navigate(['/departments']);
+      });
     }
   }
 

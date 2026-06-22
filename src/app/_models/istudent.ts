@@ -1,5 +1,8 @@
 export interface Istudent {
-  id: number;
-  name: string;
-  age: number;
+  StId: number;
+  StFname: string;
+  StLname?: string;
+  StAge?: number;
+  DeptId?: number;
+  deptName?: string;
 }

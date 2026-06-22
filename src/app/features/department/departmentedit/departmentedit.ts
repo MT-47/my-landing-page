@@ -16,20 +16,22 @@ export class Departmentedit implements OnInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  dept: IDepartment = { id: 0, name: '', location: '' };
+  dept: IDepartment = { DeptId: 0, DeptName: '', DeptLocation: '' };
   private sub!: Subscription;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = Number(params['id']);
-      const found = this.departmentService.getById(id);
-      if (found) this.dept = { ...found };
+      this.departmentService.getById(id).subscribe(data => {
+        this.dept = { ...data };
+      });
     });
   }
 
   save() {
-    this.departmentService.update(this.dept);
-    this.router.navigate(['/departments']);
+    this.departmentService.update(this.dept).subscribe(() => {
+      this.router.navigate(['/departments']);
+    });
   }
 
   ngOnDestroy() {

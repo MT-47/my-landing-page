@@ -14,10 +14,11 @@ export class Studentadd {
   private studentService = inject(StudentService);
   private router = inject(Router);
 
-  std: Istudent = { id: 0, name: '', age: 0 };
+  std: Istudent = { StId: 0, StFname: '', StLname: '', StAge: 0 };
 
   add() {
-    this.studentService.add(this.std);
-    this.router.navigate(['/students']);
+    this.studentService.add(this.std).subscribe(() => {
+      this.router.navigate(['/students']);
+    });
   }
 }

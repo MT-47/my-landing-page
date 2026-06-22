@@ -20,12 +20,16 @@ export class Departmentlist implements OnInit, OnDestroy {
   departments: IDepartment[] = [];
 
   ngOnInit() {
-    this.departments = this.departmentService.getAll();
+    this.loadDepartments();
     this.sub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => {
-        this.departments = this.departmentService.getAll();
-      });
+      .subscribe(() => this.loadDepartments());
+  }
+
+  loadDepartments() {
+    this.departmentService.getAll().subscribe(res => {
+      this.departments = res;
+    });
   }
 
   ngOnDestroy() {

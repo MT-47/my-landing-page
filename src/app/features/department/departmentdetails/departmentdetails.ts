@@ -20,7 +20,9 @@ export class Departmentdetails implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = Number(params['id']);
-      this.dept = this.departmentService.getById(id);
+      this.departmentService.getById(id).subscribe(data => {
+        this.dept = data;
+      });
     });
   }
 
