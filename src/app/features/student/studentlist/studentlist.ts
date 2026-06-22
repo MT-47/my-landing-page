@@ -15,7 +15,7 @@ import { filter } from 'rxjs/operators';
 export class Studentlist implements OnInit, OnDestroy {
   private studentService = inject(StudentService);
   private router = inject(Router);
-  private cdr = inject(ChangeDetectorRef);  // ← ضيف دي
+  private cdr = inject(ChangeDetectorRef);
   private sub!: Subscription;
 
   students: Istudent[] = [];
@@ -33,8 +33,8 @@ ngOnInit() {
 
   loadStudents() {
     this.studentService.getAll().subscribe(res => {
-      this.students = [...res];      // ← spread operator مهم
-      this.cdr.detectChanges();      // ← force re-render
+      this.students = [...res];
+      this.cdr.detectChanges();
     });
   }
 
