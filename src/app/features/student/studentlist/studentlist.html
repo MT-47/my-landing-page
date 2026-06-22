@@ -12,16 +12,16 @@
       </tr>
     </thead>
     <tbody>
-      @for (student of students; track student.StId; let i = $index) {
+      @for (student of students; track student.stId; let i = $index) {
       <tr [ngClass]="i % 2 === 0 ? 'table-light' : 'table-secondary'">
-        <td>{{ student.StId }}</td>
-        <td>{{ student.StFname }}</td>
-        <td>{{ student.StLname }}</td>
-        <td>{{ student.StAge }}</td>
+        <td>{{ student.stId }}</td>
+<td>{{ student.stFname }}</td>
+<td>{{ student.stLname }}</td>
+<td>{{ student.stAge }}</td>
         <td>
-          <a routerLink="/students/edit/{{ student.StId }}" class="btn btn-sm btn-warning me-2">Edit</a>
-          <a routerLink="/students/delete/{{ student.StId }}" class="btn btn-sm btn-danger me-2">Delete</a>
-          <a routerLink="/students/details/{{ student.StId }}" class="btn btn-sm btn-info me-2">Details</a>
+          <a routerLink="/students/edit/{{ student.stId }}" class="btn btn-sm btn-warning me-2">Edit</a>
+          <a routerLink="/students/delete/{{ student.stId }}" class="btn btn-sm btn-danger me-2">Delete</a>
+          <a routerLink="/students/details/{{ student.stId }}" class="btn btn-sm btn-info me-2">Details</a>
         </td>
       </tr>
       }

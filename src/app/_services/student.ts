@@ -22,7 +22,7 @@ export class StudentService {
   }
 
   update(student: Istudent): Observable<any> {
-    return this.http.put(`${this.url}/${student.StId}`, student);
+    return this.http.put(`${this.url}/${student.stId}`, student);
   }
 
   delete(id: number): Observable<any> {
